@@ -4,9 +4,7 @@ import com.team4.structures.Message;
 import com.team4.structures.MessageDecoder;
 import com.team4.structures.MessageEncoder;
 import java.io.IOException;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
 import javax.websocket.EncodeException;
 import javax.websocket.OnClose;
 import javax.websocket.OnMessage;
@@ -16,7 +14,8 @@ import javax.websocket.Session;
 @javax.websocket.server.ServerEndpoint(value = "/", encoders = MessageEncoder.class, decoders = MessageDecoder.class)
 public class Server {
 
-    static Set<Session> clients = Collections.synchronizedSet(new HashSet<Session>());
+    //static Set<Session> clients = Collections.synchronizedSet(new HashSet<Session>());
+    private static final ArrayList<Session> clients = new ArrayList<>();
 
     @OnOpen
     public void onOpen(Session session) {
@@ -40,7 +39,7 @@ public class Server {
 
         System.out.println("Mensaje recibido: "+message.getContent());
         System.out.println("Autor: "+message.getautor());
-        
+
         //Reenviar 
         for (Session client : clients) {
             if (!session.getId().equals(client.getId())) {
