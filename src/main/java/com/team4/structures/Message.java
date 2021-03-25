@@ -1,7 +1,5 @@
 package com.team4.structures;
 
-import java.util.Date;
-
 public class Message {
 
     private String content;

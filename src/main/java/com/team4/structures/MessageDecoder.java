@@ -6,7 +6,6 @@ import javax.websocket.DecodeException;
 import javax.websocket.Decoder;
 import javax.websocket.EndpointConfig;
 import java.io.StringReader;
-import java.util.Date;
 
 public class MessageDecoder implements Decoder.Text<Message> {
 
